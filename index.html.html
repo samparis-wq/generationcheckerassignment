@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Know Your Generation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 40px;
+        }
+
+        .container {
+            background: #ffffff;
+            max-width: 400px;
+            margin: auto;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 12px;
+            font-size: 16px;
+        }
+
+        input {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        
+        #result {
+            margin-top: 18px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>GENERATION CHECK</h2>
+    <p>Enter your year of birth:</p>
+	
+    <input
+        type="text"
+        id="birthYear"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        maxlength="4"
+    >
+
+    <button onclick="checkGeneration()">Find Out</button>
+
+    <div id="result"></div>
+</div>
+
+<script>
+function checkGeneration() {
+    let year = document.getElementById("birthYear").value;
+    let result = document.getElementById("result");
+    let currentYear = new Date().getFullYear();
+
+    if (!/^\d{4}$/.test(year) || year > currentYear || year < 1900) {
+        result.style.color = "red";
+        result.innerHTML = "Invalid year entered.";
+        return;
+    }
+
+    year = parseInt(year);
+    let generation = "";
+
+    if (year >= 2013) {
+        generation = "Gen Alpha";
+    } else if (year >= 1997) {
+        generation = "Gen Z";
+    } else if (year >= 1981) {
+        generation = "Millennials (Gen Y)";
+    } else if (year >= 1965) {
+        generation = "Gen X";
+    } else if (year >= 1946) {
+        generation = "Baby Boomers";
+    } else {
+        generation = "Silent Generation";
+    }
+
+    result.style.color = "blue";
+    result.innerHTML = "You are: " + generation;
+}
+</script>
+
+</body>
+</html>
